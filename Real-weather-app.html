@@ -11,6 +11,9 @@
     body {
       background-color: rgb(210, 204, 216);
     }
+    a {
+      color: rgb(150, 74, 221);
+    }
     .weather-app {
       background-color: white;
       max-width: 600px;
@@ -19,24 +22,104 @@
       box-shadow: 0 30px 50px rgba(45, 50, 100, 0);
       border-radius: 35px;
     }
+    header {
+      border-bottom: 1px solid #f9f7fe;
+      padding: 30px 0 0;
+    }
+    .search-form-input {
+      border: none;
+      border-radius: 6px;
+      background-color: rgb(239, 235, 244);
+      max-width: 80%;
+      padding: 10px;
+    }
+    .search-form-button {
+      background: rgb(225, 87, 225);
+      padding: 10px 10px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      margin-left: 5px;
+      font-size: 13px;
+    }
+    main {
+      padding: 30px 0;
+    }
+    .app-data {
+      display: flex;
+      justify-content: space-between;
+    }
+    .app-city {
+      margin: 0;
+      font-size: 38px;
+      line-height: 48px;
+    }
+    .app-city-details {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: rgb(94, 91, 91);
+    }
+    .weather-container {
+      display: flex;
+    }
+    .weather-temperature {
+      font-size: 85px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .weather-icon {
+      font-size: 45px;
+      margin-top: 22px;
+    }
+    .weather-temperature-unit {
+      margin-top: 16px;
+      font-size: 40px;
+    }
+    .app-city-details strong {
+      color: rgb(237, 85, 110);
+    }
+    footer {
+      border-top: 1px solid #f9f7fe;
+      padding: 30px 0 0;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: rgba (0, 0, 0, 0.7);
+    }
   </style>
   <body>
     <div class="weather-app">
       <header>
-        <form>
-          <input type="search" placeholder="Enter a city.." required />
-          <input type="submit" value="search" />
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-form-input" />
+          <input type="submit" value="search" class="search-form-button" />
         </form>
       </header>
       <main>
-        <h1>Paris</h1>
-        <p>
-          Tuesday 14:49, scattered clouds
-          <br />
-          Humidity: 66%, Wind: 3.13km/h
-        </p>
-        <div>⛅ 12*C</div>
+        <div class="app-data">
+          <div>
+            <h1 class="app-city">Paris</h1>
+            <p class="app-city-details">
+              Tuesday 14:49, scattered clouds
+              <br />
+              Humidity: <strong>66%</strong>, Wind: <strong>33.13km/h</strong>
+            </p>
+          </div>
+          <div>
+            <div class="weather-container">
+              <div class="weather-icon">⛅</div>
+              <div class="weather-temperature">12</div>
+              <div class="weather-temperature-unit">*C</div>
+            </div>
+          </div>
+        </div>
       </main>
+
       <footer>
         This weather app was coded by Lovelyn, and is
         <a href="https://github.com/luhvelyn?tab=repositories" target="_blank"
