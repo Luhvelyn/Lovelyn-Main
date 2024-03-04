@@ -105,17 +105,17 @@
       <main>
         <div class="app-data">
           <div>
-            <h1 class="app-city" id="city">Paris</h1>
+            <h1 class="app-city" id="city"></h1>
             <p class="app-city-details">
-              Tuesday 14:49, scattered clouds
+              <span id="time">Tuesday 14:49,</span> <span id="description">scattered clouds</span>
               <br />
-              Humidity: <strong>66%</strong>, Wind: <strong>33.13km/h</strong>
+              Humidity: <strong id="humidity">%</strong>, Wind: <strong id="wind-speed">km/h</strong>
             </p>
           </div>
           <div>
             <div class="weather-container">
               <div class="weather-icon">⛅</div>
-              <div class="weather-temperature" id="temperature">12</div>
+              <div class="weather-temperature" id="temperature"></div>
               <div class="weather-temperature-unit">&#xb0;C</div>
             </div>
           </div>
@@ -139,12 +139,40 @@
       function refreshWeather(response) {
         let temperatureElement = document.querySelector("#temperature");
         let temperature = response.data.temperature.current;
+        let cityElement = document.querySelector("#city");
+        let descriptionElement = document.querySelector("#description");
+        let humidityElement = document.querySelector("#humidity");
+        let windSpeedElement = document.querySelector("#wind-speed");
+        let timeElement = document.querySelector("#time")
+        let date = new Date(response.data.time * 1000);
 
+      
+
+        cityElement.innerHTML = response.data.city;
+        timeElement.innerHTML = formatDate(date);
+        descriptionElement.innerHTML = response.data.condition.description;
+        humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+        windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`
        temperatureElement.innerHTML = Math.round(temperature); 
       } 
 
+      function formatDate(date) {
+        let minutes = date.getMinutes();
+        let hours = date.getHours();
+        let days = [
+          "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "saturday",
+        ];
+        let day = days[date.getDay()];
+        
+        if (minutes < 10) {
+          minutes = `0${minutes}`;
+        }
+        return `${day} ${hours}:${minutes}`;
 
-      function searchCity(city) { 
+      }
+
+
+      function searchCity(city) {
        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=b2a5adcct04b33178913oc335f405433`;
        axios.get(apiUrl).then(refreshWeather);
       }
@@ -153,12 +181,15 @@
       function handleSearchSubmit(event) {
         event.preventDefault();
         let searchInput = document.querySelector("#search-form-input");
-        let cityElement = document.querySelector("#city");
-        cityElement.innerHTML = searchInput.value;
+       
         searchCity(searchInput.value);
       }
       let searchFormElement = document.querySelector("#search-form");
       searchFormElement.addEventListener("submit", handleSearchSubmit);
+
+      searchCity("Miami");
+
+     
     </script>
   </body>
 </html>
