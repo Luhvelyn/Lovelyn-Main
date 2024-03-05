@@ -71,7 +71,7 @@
     }
     .weather-icon {
       font-size: 90px;
-      margin-top: 22px;
+      margin-top: 18px;
       height: 88px;
     }
     .weather-temperature-unit {
@@ -89,6 +89,21 @@
       font-weight: bold;
       color: rgba (0, 0, 0, 0.7);
     }
+    .weather-forecast {
+      margin-top: 20px;
+      color: #000;
+    }
+    .weather-forecast-date {
+      font-size: 16px;
+      opacity: 0.6;
+    }
+    .min-forecast {
+    opacity: 0.4;
+    }
+    .weather-forecast-temperatures{
+      font-size: 13px;
+    }
+
   </style>
   <body>
     <div class="weather-app">
@@ -121,6 +136,23 @@
               </div>
               <div class="weather-temperature" id="temperature"></div>
               <div class="weather-temperature-unit">&#xb0;C</div>
+            </div>
+          </div>
+        </div>
+        <div class="weather-forecast">
+          <div class="row">
+            <div class="column-2">
+              <div class="weather-forecast-date">
+              Thu
+            </div> 
+              <img 
+              src="http://openweathermap.org/img/wn/50d@2x.png" alt="" 
+              width="42"
+              />
+              <div class="weather-forecast-temperatures">
+              <span class="max-forecast"> 18&#xb0;</span>
+              <span class="min-forecast">12&#xb0;</span>
+              </div>
             </div>
           </div>
         </div>
