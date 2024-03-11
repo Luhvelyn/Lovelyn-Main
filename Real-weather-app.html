@@ -92,6 +92,8 @@
     .weather-forecast {
       margin-top: 20px;
       color: #000;
+      display: flex;
+      justify-content: space-around;
     }
     .weather-forecast-date {
       font-size: 16px;
@@ -103,6 +105,7 @@
     .weather-forecast-temperatures{
       font-size: 13px;
     }
+    
 
   </style>
   <body>
@@ -132,25 +135,14 @@
             <div class="weather-container">
               <div id="icon">
               <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
-               class="weather-icon"  />
+               class="weather-icon"  /> 	
               </div>
               <div class="weather-temperature" id="temperature"></div>
               <div class="weather-temperature-unit">&#xb0;C</div>
             </div>
           </div>
         </div>
-        <div class="weather-forecast-day">
-        <div class="wether-forecast-date">Tue</div>
-        <div class="weather-forecast-icon"></div>
-        <div class="weather-forecast-temperatures">
-          <div class="weather-forecast-temperature">
-            <strong>15&#xb0;</strong>
-            </div>
-            <div class="weather-forecast-temperature">9&#xb0;</div>
-            </div>
-            </div>
-  
-            
+        <div class="weather-forecast" id="forecast"></div>
       </main>
 
       <footer>
@@ -218,15 +210,16 @@
       }
 
 function displayForecast() {
-  let forecast = document.queryselector("#forecast");
-
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHTML = "";
 
   days.forEach(function (day) {
-forecast.innerHTML = `
+forecastHTML =
+forecastHTML +
+ `
 <div class="weather-forecast-day">
   <div class="wether-forecast-date">${day}</div>
-  <div class="weather-forecast-icon>"</div>
+  <div class="weather-forecast-icon">&#x26C5;</div>
   <div class="weather-forecast-temperatures">
     <div class="weather-forecast-temperature">
       <strong>15&#xb0;</strong>
@@ -236,6 +229,9 @@ forecast.innerHTML = `
       </div>
       `;
 });
+let forecastElement = document.querySelector("#forecast");
+forecastElement.innerHTML = forecastHTML;
+
 }
 
       let searchFormElement = document.querySelector("#search-form");
